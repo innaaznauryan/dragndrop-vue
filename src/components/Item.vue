@@ -1,5 +1,8 @@
 <template>
-    <p draggable="true" class="item">
+    <p
+            draggable="true"
+            class="item"
+            :style="{'height': `${itemHeight}px`}">
         <slot/>
     </p>
 </template>
@@ -7,22 +10,22 @@
 <script>
     export default {
         name: "Item",
+        props: ["itemHeight"]
     }
 </script>
 
 <style scoped>
     .item {
         padding: 10px;
-        box-shadow: inset 0 0 7px gray;
         transition: .5s;
     }
 
     .new {
-        color: darkgreen;
+        color: seagreen;
     }
 
     .transform {
-        transform: translateY(38px);
+        transform: translateY(40px);
     }
 
     .transparent {

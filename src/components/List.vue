@@ -5,16 +5,19 @@
                     v-for="(board, index) in boards"
                     :key="'board' + index"
                     class="board-wrapper">
-                <h3>{{ properties[index].title }}</h3>
+                <h3 :style="{'height': `${itemHeight}px`}">
+                    {{ properties[index].title }}
+                </h3>
                 <Board
                         :items="board"
                         :boardIndex="index"
-                        :newItemIndex="newItemIndex"
+                        :newItem="newItem"
                         :newItemBoardIndex="newItemBoardIndex"
                         :draggableItemIndex="draggableItemIndex"
                         :sourceBoardIndex="sourceBoardIndex"
                         :target="target"
                         :properties="properties"
+                        :itemHeight="itemHeight"
                         @dragstart="e => handleDragStart(e, index)"
                         @dragover="e => handleDragOver(e, index)"
                         @drop="e => handleDrop(e, index)"
@@ -22,7 +25,9 @@
                         @dragend="handleDragend"/>
             </div>
         </div>
-        <form @submit.prevent="handleSubmit">
+        <form
+                @submit.prevent="handleSubmit"
+                :style="{'margin': `${itemHeight}px auto 0`}">
             <input type="text" placeholder="New task" required v-model.trim="newItemTitle">
             <select v-model="newItemBoardIndex">
                 <option
@@ -49,11 +54,12 @@
         data() {
             return {
                 newItemTitle: null,
-                newItemIndex: null,
                 newItemBoardIndex: 0,
+                newItem: {itemIndex: null, boardIndex: null},
                 draggableItemIndex: null,
                 sourceBoardIndex: null,
                 target: {itemIndex: null, boardIndex: null},
+                itemHeight: 40,
                 boards: [
                     ["burunduk1", "burunduk2", "burunduk3"],
                     ["burunduk4", "burunduk5", "burunduk6"],
@@ -69,7 +75,8 @@
         methods: {
             handleSubmit() {
                 this.boards[this.newItemBoardIndex].push(this.newItemTitle)
-                this.newItemIndex = this.boards[this.newItemBoardIndex].length - 1
+                this.newItem.itemIndex = this.boards[this.newItemBoardIndex].length - 1
+                this.newItem.boardIndex = this.newItemBoardIndex
                 this.newItemTitle = null
             },
             handleDragStart(e, boardIndex) {
@@ -94,7 +101,7 @@
                     }
                 }
                 if (e.target.classList.contains("board")) {
-                    if (e.clientY > e.target.getBoundingClientRect().y + this.boards[boardIndex].length * 38) {
+                    if (e.clientY > e.target.getBoundingClientRect().y + this.boards[boardIndex].length * this.itemHeight) {
                         this.target.itemIndex = this.boards[boardIndex].length
                     }
                 }
@@ -129,20 +136,19 @@
 
 <style scoped>
     .container {
-        margin: 20px auto;
+        margin: 10px auto;
         max-width: 1000px;
+        width: 100%;
     }
 
     .list {
         display: flex;
         justify-content: center;
         gap: 10px;
-        min-height: 300px;
     }
 
     .board-wrapper {
         flex: 1;
-        aspect-ratio: 1;
     }
 
     h3 {
@@ -151,7 +157,6 @@
     }
 
     form {
-        margin: 20px auto;
         max-width: 50%;
         display: flex;
         justify-content: center;

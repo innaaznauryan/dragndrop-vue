@@ -1,12 +1,19 @@
 <template>
-    <div class="board">
+    <div
+            class="board"
+            :style="{
+                'min-height': `${itemHeight * 6}px`,
+                'height': `calc(100% - ${itemHeight}px)`,
+                'padding-bottom': `${itemHeight}px`
+            }">
         <Item
                 v-for="(item, index) in items"
                 :key="'item' + index"
                 :data-index="index"
-                :style="{'background-color': properties[boardIndex].color}"
+                :itemHeight="itemHeight"
+                :style="{'background': `linear-gradient(${properties[boardIndex].color}, 90%, darkseagreen)`}"
                 :class="{
-                    'new': index === newItemIndex && boardIndex === newItemBoardIndex,
+                    'new': index === newItem.itemIndex && boardIndex === newItem.boardIndex,
                     'transparent': index === draggableItemIndex && boardIndex === sourceBoardIndex,
                     'transform':
                         target.itemIndex !== null
@@ -29,12 +36,13 @@
         props: [
             "items",
             "boardIndex",
-            "newItemIndex",
+            "newItem",
             "newItemBoardIndex",
             "draggableItemIndex",
             "sourceBoardIndex",
             "target",
-            "properties"
+            "properties",
+            "itemHeight"
         ],
     }
 </script>
@@ -44,6 +52,5 @@
         background-color: white;
         display: flex;
         flex-direction: column;
-        height: 100%;
     }
 </style>

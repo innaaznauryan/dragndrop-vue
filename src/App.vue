@@ -1,5 +1,7 @@
 <template>
-    <List/>
+    <main>
+        <List/>
+    </main>
 </template>
 
 <script>
@@ -12,3 +14,11 @@
         }
     }
 </script>
+
+<style scoped>
+    main {
+        display: flex;
+        align-items: center;
+        min-height: 100vh;
+    }
+</style>
