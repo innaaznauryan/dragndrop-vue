@@ -11,8 +11,7 @@
                 <Board
                         :items="board"
                         :boardIndex="index"
-                        :newItem="newItem"
-                        :newItemBoardIndex="newItemBoardIndex"
+                        :newItemId="newItemId"
                         :draggableItemIndex="draggableItemIndex"
                         :sourceBoardIndex="sourceBoardIndex"
                         :target="target"
@@ -54,16 +53,16 @@
         data() {
             return {
                 newItemTitle: null,
+                newItemId: null,
                 newItemBoardIndex: 0,
-                newItem: {itemIndex: null, boardIndex: null},
                 draggableItemIndex: null,
                 sourceBoardIndex: null,
                 target: {itemIndex: null, boardIndex: null},
                 itemHeight: 40,
                 boards: [
-                    ["burunduk1", "burunduk2", "burunduk3"],
-                    ["burunduk4", "burunduk5", "burunduk6"],
-                    ["burunduk7", "burunduk8", "burunduk9"],
+                    [{title: "burunduk1", id: 1}, {title: "burunduk2", id: 2}, {title: "burunduk3", id: 3}],
+                    [{title: "burunduk4", id: 4}, {title: "burunduk5", id: 5}, {title: "burunduk6", id: 6}],
+                    [{title: "burunduk7", id: 7}, {title: "burunduk8", id: 8}, {title: "burunduk9", id: 9}],
                 ],
                 properties: [
                     {title: "To do", color: "lightcyan"},
@@ -74,9 +73,10 @@
         },
         methods: {
             handleSubmit() {
-                this.boards[this.newItemBoardIndex].push(this.newItemTitle)
-                this.newItem.itemIndex = this.boards[this.newItemBoardIndex].length - 1
-                this.newItem.boardIndex = this.newItemBoardIndex
+                const id = Math.round(Math.random() * 1000)
+                const newItem = {id, title: this.newItemTitle}
+                this.boards[this.newItemBoardIndex].push(newItem)
+                this.newItemId = id
                 this.newItemTitle = null
             },
             handleDragStart(e, boardIndex) {

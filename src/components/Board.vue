@@ -13,14 +13,14 @@
                 :itemHeight="itemHeight"
                 :style="{'background': `linear-gradient(${properties[boardIndex].color}, 90%, darkseagreen)`}"
                 :class="{
-                    'new': index === newItem.itemIndex && boardIndex === newItem.boardIndex,
+                    'new': item.id === newItemId,
                     'transparent': index === draggableItemIndex && boardIndex === sourceBoardIndex,
                     'transform':
                         target.itemIndex !== null
                         && index >= target.itemIndex
                         && boardIndex === target.boardIndex,
                 }">
-            {{ item }}
+            {{ item.title }}
         </Item>
     </div>
 </template>
@@ -36,8 +36,7 @@
         props: [
             "items",
             "boardIndex",
-            "newItem",
-            "newItemBoardIndex",
+            "newItemId",
             "draggableItemIndex",
             "sourceBoardIndex",
             "target",

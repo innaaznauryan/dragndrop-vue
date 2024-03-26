@@ -22,6 +22,7 @@
 
     .new {
         color: seagreen;
+        text-shadow: 0 0 5px darkseagreen;
     }
 
     .transform {
