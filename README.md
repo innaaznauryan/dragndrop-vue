@@ -1,6 +1,6 @@
 # Draggable to do list
 
-### Leve demo version [here](https://dragndroplist.netlify.app/)
+### Live demo version [here](https://dragndroplist.netlify.app/)
 
 ## Project setup
 ```
