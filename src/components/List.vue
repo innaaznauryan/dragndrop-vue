@@ -60,14 +60,14 @@
                 target: {itemIndex: null, boardIndex: null},
                 itemHeight: 40,
                 boards: [
-                    [{title: "burunduk1", id: 1}, {title: "burunduk2", id: 2}, {title: "burunduk3", id: 3}],
-                    [{title: "burunduk4", id: 4}, {title: "burunduk5", id: 5}, {title: "burunduk6", id: 6}],
-                    [{title: "burunduk7", id: 7}, {title: "burunduk8", id: 8}, {title: "burunduk9", id: 9}],
+                    [{title: "Task 1", id: 1}, {title: "Task 2", id: 2}, {title: "Task 3", id: 3}],
+                    [{title: "Task 4", id: 4}, {title: "Task 5", id: 5}, {title: "Task 6", id: 6}],
+                    [{title: "Task 7", id: 7}, {title: "Task 8", id: 8}, {title: "Task 9", id: 9}],
                 ],
                 properties: [
-                    {title: "To do", color: "lightcyan"},
-                    {title: "In progress", color: "lightyellow"},
-                    {title: "Completed", color: "lightgreen"}
+                    {title: "To do", color: "cadetblue"},
+                    {title: "In progress", color: "orange"},
+                    {title: "Completed", color: "green"}
                 ]
             }
         },
@@ -124,7 +124,6 @@
                 }
             },
             handleDragend(e) {
-                console.log("dragend")
                 this.draggableItemIndex = null
                 this.sourceBoardIndex = null
                 this.target.itemIndex = null
@@ -178,8 +177,7 @@
     button {
         padding: 10px 20px;
         cursor: pointer;
-        background-color: black;
-        color: white;
+        background-color: lightgray;
         border: 0;
     }
 </style>

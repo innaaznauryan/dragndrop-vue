@@ -11,7 +11,7 @@
                 :key="'item' + index"
                 :data-index="index"
                 :itemHeight="itemHeight"
-                :style="{'background': `linear-gradient(${properties[boardIndex].color}, 90%, darkseagreen)`}"
+                :style="{'backgroundColor': properties[boardIndex].color}"
                 :class="{
                     'new': item.id === newItemId,
                     'transparent': index === draggableItemIndex && boardIndex === sourceBoardIndex,

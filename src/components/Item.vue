@@ -18,11 +18,12 @@
     .item {
         padding: 10px;
         transition: .5s;
+        border: 1px solid #ececec;
+        cursor: pointer;
     }
 
     .new {
-        color: seagreen;
-        text-shadow: 0 0 5px darkseagreen;
+        color: lightgreen;
     }
 
     .transform {
